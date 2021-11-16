@@ -15,13 +15,20 @@ namespace FlappyBird
         public Form1()
         {
             InitializeComponent();
+            init();
+        }
 
-            PictureBox newbird = new PictureBox();
-            newbird.Image =  global::FlappyBird.Properties.Resources.birdscaled;
-            picDesktop.Controls.Add(newbird);
-            newbird.Location = new Point(0, 0);
-            newbird.BackColor = Color.Transparent;
+        // PHU ZONE
+        void init()
+        {
+            // made a picture box for bird
+            picBird.Parent = picDesktop;
+            picBird.BackColor = Color.Transparent;
             
         }
+        // END PHU ZONE
+
+        // TU ZONE  
+        // END TU ZONE
     }
 }
