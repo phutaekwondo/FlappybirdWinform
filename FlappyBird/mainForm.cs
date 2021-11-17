@@ -19,17 +19,43 @@ namespace FlappyBird
         }
 
         // PHU ZONE
+        int BirdFallingSpeed= 0;
+        int Gravity = 1;
+        int Max_BirdFallingSpeed= 10;
+
+
         void init()
         {
             // made a picture box for bird
             picBird.Parent = picDesktop;
             picBird.BackColor = Color.Transparent;
-            
+
+            //set 60fps
+
         }
+
+        void MovePictureBox( PictureBox pic, int X, int Y)
+        {
+            int picX = pic.Location.X;
+            int picY = pic.Location.Y;
+
+            picX += X;
+            picY += Y;
+
+            pic.Location = new Point(picX, picY);
+        }
+
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            BirdFallingSpeed += Gravity;
+            if ( BirdFallingSpeed > Max_BirdFallingSpeed)
+            {
+                BirdFallingSpeed = Max_BirdFallingSpeed;
+            }
 
+            //drop down the bird 
+            MovePictureBox(picBird, 0, BirdFallingSpeed);
         }
 
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
