@@ -82,8 +82,8 @@ namespace FlappyBird
             // gameTimer
             // 
             this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 15;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            this.gameTimer.Interval = 16;
+            //this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // labDebug
             // 
