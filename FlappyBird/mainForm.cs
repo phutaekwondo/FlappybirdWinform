@@ -10,6 +10,8 @@ using System.Windows.Forms;
 //for stopwatch
 using System.Diagnostics;
 using System.Threading;
+//for keystate
+using System.Windows.Input;
 
 namespace FlappyBird
 {
@@ -22,9 +24,10 @@ namespace FlappyBird
         }
 
         // PHU ZONE
-        int BirdFallingSpeed= 0;
+        int BirdFallingSpeed = 0;
         int Gravity = 1;
-        int Max_BirdFallingSpeed= 10;
+        int Max_BirdFallingSpeed= 4;
+        int JumpSpeed = -10;
         Stopwatch stopwatch = new Stopwatch();
 
         void init()
@@ -36,7 +39,7 @@ namespace FlappyBird
             //set 60fps
             stopwatch.Start();
 
-            System.Windows.Forms.Application.Idle += new EventHandler(gameTimer_Tick);
+            //System.Windows.Forms.Application.Idle += new EventHandler(gameTimer_Tick);
         }
 
         int getPreviousFrameTime()
@@ -45,7 +48,7 @@ namespace FlappyBird
             int res = Convert.ToInt32(stopwatch.ElapsedMilliseconds);
 
             stopwatch.Reset();
-            //stopwatch.Start();
+            stopwatch.Start();
             return res;
         }
 
@@ -64,19 +67,24 @@ namespace FlappyBird
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             //sleep to make game run at 60 fps
-            int preFrameTime = getPreviousFrameTime();
-            int FrameTimeDefault = 15;
-            if ( preFrameTime < FrameTimeDefault)
-            {
-                Thread.Sleep(FrameTimeDefault - preFrameTime);
-            }
+            //int preFrameTime;
+            //preFrameTime = Convert.ToInt32(stopwatch.ElapsedMilliseconds);
+            //int FrameTimeDefault = 10;
+            //if ( preFrameTime < FrameTimeDefault)
+            //{
+            //    Thread.Sleep(FrameTimeDefault - preFrameTime);
+            //}
+            Thread.Sleep(1);
+            //preFrameTime = getPreviousFrameTime();
 
+            //UPDATE
             //calculate falling speed
             BirdFallingSpeed += Gravity;
             if ( BirdFallingSpeed > Max_BirdFallingSpeed)
             {
                 BirdFallingSpeed = Max_BirdFallingSpeed;
             }
+            //BirdFallingSpeed = Convert.ToInt32( Convert.ToDouble(BirdFallingSpeed) * Convert.ToDouble(preFrameTime) / 15.0d );
 
             //check if bird dropped to the ground, then stop falling
             var birdRect = picBird.Bounds;
@@ -85,40 +93,33 @@ namespace FlappyBird
             {
                 picBird.Location = new Point(birdRect.X, groundHeight - birdRect.Height);
             }
+            else if ( birdRect.Y <= 0)
+            {
+                picBird.Location = new Point(birdRect.X, 0);
+            }
             else {
                 //drop down the bird 
                 MovePictureBox(picBird, 0, BirdFallingSpeed);
             }
+
         }
 
-        private void mainForm_KeyDown(object sender, KeyEventArgs e)
+        private void mainForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            //move the bird 
-            if ( e.KeyCode == Keys.Up)
-            {
-                //move up
-                int bird_x = picBird.Location.X;
-                int bird_y = picBird.Location.Y;
-
-                bird_y -= 20;
-
-                picBird.Location = new Point(bird_x, bird_y);
-            }
-            else if ( e.KeyCode == Keys.Down)
-            {
-                //move down 
-                int bird_x = picBird.Location.X;
-                int bird_y = picBird.Location.Y;
-
-                bird_y += 20;
-
-                picBird.Location = new Point(bird_x, bird_y);
-            }
+            BirdFallingSpeed = JumpSpeed;
         }
 
-        private void mainForm_KeyUp(object sender, KeyEventArgs e)
-        {
-        }
+        //private void mainForm_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    //move the bird 
+        //    if ( e.KeyCode == Keys.Up)
+        //    {
+        //        //move up
+        //        BirdFallingSpeed = -20;
+        //    }
+        //}
+
+
 
         // END PHU ZONE
 

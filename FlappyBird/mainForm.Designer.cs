@@ -71,7 +71,7 @@ namespace FlappyBird
             this.picBird.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picBird.BackColor = System.Drawing.Color.Transparent;
             this.picBird.Image = global::FlappyBird.Properties.Resources.birdscaled;
-            this.picBird.Location = new System.Drawing.Point(55, 300);
+            this.picBird.Location = new System.Drawing.Point(57, 194);
             this.picBird.Margin = new System.Windows.Forms.Padding(2);
             this.picBird.Name = "picBird";
             this.picBird.Size = new System.Drawing.Size(66, 48);
@@ -82,8 +82,8 @@ namespace FlappyBird
             // gameTimer
             // 
             this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 16;
-            //this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // labDebug
             // 
@@ -109,7 +109,6 @@ namespace FlappyBird
             this.Name = "mainForm";
             this.Text = "flappy bird";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.picGround)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDesktop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBird)).EndInit();
