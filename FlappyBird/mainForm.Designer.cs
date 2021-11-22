@@ -35,9 +35,11 @@ namespace FlappyBird
             this.picBird = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.labDebug = new System.Windows.Forms.Label();
+            this.picNextGround = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picGround)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDesktop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBird)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNextGround)).BeginInit();
             this.SuspendLayout();
             // 
             // picGround
@@ -45,7 +47,7 @@ namespace FlappyBird
             this.picGround.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picGround.Image = global::FlappyBird.Properties.Resources.ground;
-            this.picGround.Location = new System.Drawing.Point(0, 593);
+            this.picGround.Location = new System.Drawing.Point(-100, 593);
             this.picGround.Margin = new System.Windows.Forms.Padding(2);
             this.picGround.Name = "picGround";
             this.picGround.Size = new System.Drawing.Size(501, 117);
@@ -95,11 +97,24 @@ namespace FlappyBird
             this.labDebug.TabIndex = 3;
             this.labDebug.Text = "debug";
             // 
+            // picNextGround
+            // 
+            this.picNextGround.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNextGround.Image = global::FlappyBird.Properties.Resources.ground;
+            this.picNextGround.Location = new System.Drawing.Point(25, 371);
+            this.picNextGround.Margin = new System.Windows.Forms.Padding(2);
+            this.picNextGround.Name = "picNextGround";
+            this.picNextGround.Size = new System.Drawing.Size(501, 117);
+            this.picNextGround.TabIndex = 4;
+            this.picNextGround.TabStop = false;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 710);
+            this.Controls.Add(this.picNextGround);
             this.Controls.Add(this.labDebug);
             this.Controls.Add(this.picBird);
             this.Controls.Add(this.picGround);
@@ -112,6 +127,7 @@ namespace FlappyBird
             ((System.ComponentModel.ISupportInitialize)(this.picGround)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDesktop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBird)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNextGround)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,6 +140,7 @@ namespace FlappyBird
         private System.Windows.Forms.PictureBox picBird;
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label labDebug;
+        private System.Windows.Forms.PictureBox picNextGround;
     }
 }
 

@@ -24,10 +24,14 @@ namespace FlappyBird
         }
 
         // PHU ZONE
+        //--game 
+        int ForwardSpeed = 5;
+
+        //--bird
         int BirdFallingSpeed = 0;
-        int Gravity = 1;
-        int Max_BirdFallingSpeed= 4;
-        int JumpSpeed = -10;
+        int Gravity = 2;
+        int Max_BirdFallingSpeed= 15;
+        int JumpSpeed = -20;
         Stopwatch stopwatch = new Stopwatch();
 
         void init()
@@ -39,7 +43,8 @@ namespace FlappyBird
             //set 60fps
             stopwatch.Start();
 
-            //System.Windows.Forms.Application.Idle += new EventHandler(gameTimer_Tick);
+            //DEBUG
+            updatePicNextGroundLocation();
         }
 
         int getPreviousFrameTime()
@@ -54,6 +59,7 @@ namespace FlappyBird
 
         void MovePictureBox( PictureBox pic, int X, int Y)
         {
+            if (X == 0 && Y == 0) return;
             int picX = pic.Location.X;
             int picY = pic.Location.Y;
 
@@ -63,22 +69,19 @@ namespace FlappyBird
             pic.Location = new Point(picX, picY);
         }
 
+        void updatePicNextGroundLocation()
+        {
+            picNextGround.Location = new Point(picGround.Location.X + picNextGround.Bounds.Width -1 , picGround.Location.Y);
+        }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //sleep to make game run at 60 fps
-            //int preFrameTime;
-            //preFrameTime = Convert.ToInt32(stopwatch.ElapsedMilliseconds);
-            //int FrameTimeDefault = 10;
-            //if ( preFrameTime < FrameTimeDefault)
-            //{
-            //    Thread.Sleep(FrameTimeDefault - preFrameTime);
-            //}
-            Thread.Sleep(1);
             //preFrameTime = getPreviousFrameTime();
 
             //UPDATE
             //calculate falling speed
+
+            //--------------BIRD-------------------
             BirdFallingSpeed += Gravity;
             if ( BirdFallingSpeed > Max_BirdFallingSpeed)
             {
@@ -92,15 +95,29 @@ namespace FlappyBird
             if ( birdRect.Y+birdRect.Height >= groundHeight)
             {
                 picBird.Location = new Point(birdRect.X, groundHeight - birdRect.Height);
+                BirdFallingSpeed = 0;
             }
             else if ( birdRect.Y <= 0)
             {
                 picBird.Location = new Point(birdRect.X, 0);
             }
-            else {
-                //drop down the bird 
-                MovePictureBox(picBird, 0, BirdFallingSpeed);
+            //drop down the bird 
+            MovePictureBox(picBird, 0, BirdFallingSpeed);
+
+
+            //-------------RUN THE GROUND----------------------
+            //move ground with Forward game speed 
+            int groundX = picGround.Location.X;
+            int groundY = picGround.Location.Y;
+
+            groundX -= ForwardSpeed;
+            if (groundX + picGround.Bounds.Width <= 0 )
+            {
+                groundX += picGround.Bounds.Width;
             }
+
+            picGround.Location = new Point(groundX , groundY);
+            updatePicNextGroundLocation();
 
         }
 
