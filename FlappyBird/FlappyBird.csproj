@@ -33,9 +33,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>E:\UIT\cSharp\TH2\Krypton\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\UIT\cSharp\DoAnCSharp\dll\Microsoft.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.directx.audiovideoplayback, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\UIT\cSharp\DoAnCSharp\dll\microsoft.directx.audiovideoplayback.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\UIT\cSharp\DoAnCSharp\dll\Microsoft.DirectX.Direct3D.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.directx.directplay, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\UIT\cSharp\DoAnCSharp\dll\microsoft.directx.directplay.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.directx.directsound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\UIT\cSharp\DoAnCSharp\dll\microsoft.directx.directsound.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +72,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameOverInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameOverInfo.Designer.cs">
+      <DependentUpon>GameOverInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameSetting.Designer.cs">
+      <DependentUpon>GameSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +92,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GameOverInfo.resx">
+      <DependentUpon>GameOverInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameSetting.resx">
+      <DependentUpon>GameSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +132,74 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sky1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abovePillar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\belowPillar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abovePillar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abovePillar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\belowPillar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whaleDropingBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whaleHopingBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="backgroundMusic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="hopSFX.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="hopSFX.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\settingIcon.png" />
+    <None Include="Resources\whaleHopingRed.png" />
+    <None Include="Resources\whaleHopingGreen.png" />
+    <None Include="Resources\whaleDropingRed.png" />
+    <None Include="Resources\whaleDropingGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
