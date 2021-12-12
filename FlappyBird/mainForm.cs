@@ -42,6 +42,7 @@ namespace FlappyBird
         int PillarStartIndexInControlList = 2;
         int PillarsStep = 200;
         int PillarsAboveAmdBelowSpace = 200;
+        int ComingPillarIndex = 2;
 
         //--tips
         int TipsMoveSpeed;
@@ -61,7 +62,6 @@ namespace FlappyBird
         int HighScore = 0;
         string HighScoreFile = "score.txt";
         // the coming index is sett in "init" function
-        int ComingPillarIndex = 2;
         string PlayerName = "player";
     
 
@@ -93,6 +93,8 @@ namespace FlappyBird
                 {
                     picDesktop.Controls.RemoveAt(PillarStartIndexInControlList);
                 }
+                //reset coming pillar index
+                ComingPillarIndex = PillarStartIndexInControlList;
                 //hide the game over info
                 gameOverInfoGeneral.Visible = false;
 
@@ -247,6 +249,9 @@ namespace FlappyBird
         }
         void init()
         {
+            //release
+            labDebug.Visible = false;
+
             // made a picture box for bird
             HoppingImage = global::FlappyBird.Properties.Resources.whaleHopingBlue;
             DroppingImage = global::FlappyBird.Properties.Resources.whaleDropingBlue;
