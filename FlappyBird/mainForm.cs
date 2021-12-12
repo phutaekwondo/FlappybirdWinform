@@ -50,12 +50,19 @@ namespace FlappyBird
         int TipsMinHeight;
 
         //--game 
+        public struct Player
+        {
+            public string Name;
+            public int HighScore;
+        }
+        List<Player> Top5Player = new List<Player>();
         int ForwardSpeed = 7;
-        uint Score = 0;
-        uint HighScore = 0;
+        int Score = 0;
+        int HighScore = 0;
         string HighScoreFile = "score.txt";
         // the coming index is sett in "init" function
         int ComingPillarIndex = 2;
+        string PlayerName = "player";
     
 
         enum State
@@ -69,8 +76,8 @@ namespace FlappyBird
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //if opening setting part, the do nothing
-            if (gameSettingGeneral.Visible) return;
+            //if opening setting or leaderboard, the do nothing
+            if (gameSettingGeneral.Visible || leaderBoardGeneral.Visible) return;
 
             //UPDATE
             if (gameState == (int)State.waiting)
@@ -100,12 +107,15 @@ namespace FlappyBird
 
                 //show setting icon
                 picSettingIcon.Visible = true;
+                picLeaderboard.Visible = true;
 
             }
             else if (gameState == (int)State.gameOver)
             {
+
                 //hide setting icon 
                 picSettingIcon.Visible = false;
+                picLeaderboard.Visible = false;
 
                 //hide tips
                 labTips.Visible = false;
@@ -123,11 +133,13 @@ namespace FlappyBird
                 gameOverInfoGeneral.Visible = true;
                 gameOverInfoGeneral.Score = Score.ToString();
                 gameOverInfoGeneral.HighScore = HighScore.ToString();
+
             }
             else if (gameState == (int)State.playing)
             {
                 //hide setting icon 
                 picSettingIcon.Visible = false;
+                picLeaderboard.Visible = false;
 
                 //hide tips
                 labTips.Visible = false;
@@ -221,6 +233,8 @@ namespace FlappyBird
                     if (picDesktop.Controls[i].Bounds.IntersectsWith(picBird.Bounds))
                     {
                         gameState = (int)State.gameOver;
+                        //add player to top5 if get the high score
+                        AddNewPlayerToTop5(PlayerName, Score);
                     }
                 }
             }
@@ -233,7 +247,6 @@ namespace FlappyBird
         }
         void init()
         {
-            labDebug.Visible = false;
             // made a picture box for bird
             HoppingImage = global::FlappyBird.Properties.Resources.whaleHopingBlue;
             DroppingImage = global::FlappyBird.Properties.Resources.whaleDropingBlue;
@@ -243,6 +256,9 @@ namespace FlappyBird
 
             picSettingIcon.Parent = picDesktop;
             picSettingIcon.BackColor = Color.Transparent;
+
+            picLeaderboard.Parent = picDesktop;
+            picLeaderboard.BackColor = Color.Transparent;
 
             // made labels backgroung transparent
             labPoint.Parent = picDesktop;
@@ -274,7 +290,7 @@ namespace FlappyBird
             if ( File.Exists(HighScoreFile))
             {
                 StreamReader sr = new StreamReader(HighScoreFile);
-                HighScore = Convert.ToUInt32(sr.ReadToEnd());
+                HighScore = Convert.ToInt32(sr.ReadToEnd());
             }
 
             ////play the music
@@ -285,7 +301,12 @@ namespace FlappyBird
             ////load SFX
             mediaPlayerHopSFX.URL = "hopSFX.mp3";
             mediaPlayerHopSFX.settings.volume = 10;
-            
+
+            //load top 5 player for leaderboard
+            loadTop5Player();
+            leaderBoardGeneral.LoadLeaderboard(Top5Player);
+            leaderBoardGeneral.CloseClick += new EventHandler(leaderboard_CloseClick);
+
         }
 
         void GameOverInfo_ExitClick( object sender, EventArgs e)
@@ -294,6 +315,40 @@ namespace FlappyBird
             gameState = (int)State.waiting;
         }
 
+        
+        void AddNewPlayerToTop5( string playerName, int score)
+        {
+            if (score == 0) return;
+            int index = 0;
+            while (index < Top5Player.Count && Top5Player[index].HighScore >= score )
+            {
+                index++;
+            }
+
+            Player p = new Player();
+            p.Name = playerName;
+            p.HighScore = score;
+            Top5Player.Insert(index, p);
+            Top5Player.RemoveAt(Top5Player.Count - 1);
+
+            leaderBoardGeneral.LoadLeaderboard(Top5Player);
+        }
+        void loadTop5Player()
+        {
+            Top5Player.Clear();
+            StreamReader sr = new StreamReader("leaderboard.txt");
+            string text = sr.ReadToEnd();
+            string[] playersText = text.Split('\n');
+            foreach (string player in playersText)
+            {
+                string[] playerInfo = player.Split(' ');
+                Player p = new Player();
+                p.Name = playerInfo[0];
+                p.HighScore = Convert.ToInt32(playerInfo[playerInfo.Length-1]);
+
+                Top5Player.Add(p);
+            }
+        }
         void Add2Pillars( )
         {
             Random r = new Random();
@@ -358,8 +413,8 @@ namespace FlappyBird
         }
         private void mainForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            //if opening setting part, then do nothing
-            if (gameSettingGeneral.Visible) return;
+            //if opening setting or leaderboard, the do nothing
+            if (gameSettingGeneral.Visible || leaderBoardGeneral.Visible) return;
 
             //else 
             if ( gameState == (int)State.waiting)
@@ -381,6 +436,38 @@ namespace FlappyBird
 
         private void gameSetting_AcceptClick( object sender, EventArgs e)
         {
+            //change difficult of gameplay
+            switch( gameSettingGeneral.Level)
+            {
+                case 0:
+                    PillarsStep = 400;
+                    PillarsAboveAmdBelowSpace = 300;
+                    ForwardSpeed = 7;
+                    break;
+                case 1:
+                    PillarsStep = 200;
+                    PillarsAboveAmdBelowSpace = 200;
+                    ForwardSpeed = 7;
+                    break;
+                case 2:
+                    PillarsStep = 200;
+                    PillarsAboveAmdBelowSpace = 200;
+                    ForwardSpeed = 10;
+                    break;
+            }
+
+
+            //background change
+            switch( gameSettingGeneral.BackgroundIndex)
+            {
+                case 0: picDesktop.Image = global::FlappyBird.Properties.Resources.mountain; break;
+                case 1: picDesktop.Image = global::FlappyBird.Properties.Resources.sky1; break;
+                case 2: picDesktop.Image = global::FlappyBird.Properties.Resources.galaxy; break;
+            }
+
+            //player name
+            PlayerName = gameSettingGeneral.PlayerName;
+
             //hide the settings
             gameSettingGeneral.Visible = false;
             //apply the settings
@@ -416,6 +503,16 @@ namespace FlappyBird
 
             //show setting part
             gameSettingGeneral.Visible = true;
+        }
+
+        private void picLeaderboard_Click(object sender, EventArgs e)
+        {
+            leaderBoardGeneral.Visible = true;
+        }
+
+        void leaderboard_CloseClick( object sender, EventArgs e)
+        {
+            leaderBoardGeneral.Visible = false;
         }
 
         // END PHU ZONE

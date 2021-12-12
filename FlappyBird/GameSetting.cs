@@ -17,6 +17,18 @@ namespace FlappyBird
             InitializeComponent();
         }
 
+        public string PlayerName
+        {
+            get
+            {
+                return txtPlayerName.Text;
+            }
+            set
+            {
+                txtPlayerName.Text = value;
+            }
+        }
+
         public int MusicVolumn
         {
             get
@@ -83,8 +95,8 @@ namespace FlappyBird
         {
             get
             {
-                if (radWhaleBlue.Checked)  return 0;
-                if (radWhaleRed.Checked)   return 1;
+                if (radWhaleBlue.Checked) return 0;
+                if (radWhaleRed.Checked) return 1;
                 if (radWhaleGreen.Checked) return 2;
 
                 return 0;
@@ -97,6 +109,64 @@ namespace FlappyBird
                     case 1: radWhaleRed.Checked = true; break;
                     case 2: radWhaleGreen.Checked = true; break;
                 }
+            }
+        }
+        public int BackgroundIndex
+        {
+            get
+            {
+                if (radMountain.Checked) return 0;
+                if (radSky.Checked) return 1;
+                if (radGalaxy.Checked) return 2;
+
+                return 0;
+            }
+            set
+            {
+                switch (value)
+                {
+                    case 0: radMountain.Checked = true; break;
+                    case 1: radSky.Checked = true; break;
+                    case 2: radGalaxy.Checked = true; break;
+                }
+            }
+        }
+
+        public int Level
+        {
+            get
+            {
+                return trackLevel.Value;
+            }
+            set
+            {
+                trackLevel.Value = value;
+            }
+        }
+
+        private void picMountain_Click(object sender, EventArgs e)
+        {
+            radMountain.Checked = true;
+
+        }
+
+        private void picSky_Click(object sender, EventArgs e)
+        {
+            radSky.Checked = true;
+        }
+
+        private void picGalaxy_Click(object sender, EventArgs e)
+        {
+            radGalaxy.Checked = true;
+        }
+
+        private void trackLevel_Scroll(object sender, EventArgs e)
+        {
+            switch( trackLevel.Value)
+            {
+                case 0: labLevel.Text = "level " + "easy"; break;
+                case 1: labLevel.Text = "level " + "medium"; break;
+                case 2: labLevel.Text = "level " + "hard"; break;
             }
         }
     }

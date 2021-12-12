@@ -25,3 +25,5 @@ C:\Users\root\source\repos\FlappyBird\FlappyBird\bin\Debug\hopSFX.mp3
 C:\Users\root\source\repos\FlappyBird\FlappyBird\obj\Debug\FlappyBird.GameSetting.resources
 C:\Users\root\source\repos\FlappyBird\FlappyBird\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
 C:\Users\root\source\repos\FlappyBird\FlappyBird\bin\Debug\ComponentFactory.Krypton.Toolkit.pdb
+C:\Users\root\source\repos\FlappyBird\FlappyBird\obj\Debug\FlappyBird.LeaderBoard.resources
+C:\Users\root\source\repos\FlappyBird\FlappyBird\obj\Debug\FlappyBird.LeaderBoardItem.resources

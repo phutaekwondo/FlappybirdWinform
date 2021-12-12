@@ -84,6 +84,18 @@
     <Compile Include="GameSetting.Designer.cs">
       <DependentUpon>GameSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="LeaderBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LeaderBoard.Designer.cs">
+      <DependentUpon>LeaderBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeaderBoardItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LeaderBoardItem.Designer.cs">
+      <DependentUpon>LeaderBoardItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameSetting.resx">
       <DependentUpon>GameSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaderBoard.resx">
+      <DependentUpon>LeaderBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaderBoardItem.resx">
+      <DependentUpon>LeaderBoardItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
@@ -176,6 +194,10 @@
     <Content Include="hopSFX.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\mountain.png" />
+    <None Include="Resources\galaxy.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\leaderboard_icon.png" />
     <None Include="Resources\settingIcon.png" />
     <None Include="Resources\whaleHopingRed.png" />
     <None Include="Resources\whaleHopingGreen.png" />

@@ -1,0 +1,5 @@
+faker 100
+fu 20
+tu 10
+macteo 9
+billieEilish 2
