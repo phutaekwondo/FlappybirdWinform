@@ -42,8 +42,8 @@ namespace FlappyBird
             this.picDesktop = new System.Windows.Forms.PictureBox();
             this.picGround = new System.Windows.Forms.PictureBox();
             this.picNextGround = new System.Windows.Forms.PictureBox();
-            this.gameSettingGeneral = new FlappyBird.GameSetting();
             this.gameOverInfoGeneral = new FlappyBird.GameOverInfo();
+            this.gameSettingGeneral = new FlappyBird.GameSetting();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayerMusic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayerHopSFX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSettingIcon)).BeginInit();
@@ -74,7 +74,7 @@ namespace FlappyBird
             this.labPoint.AutoSize = true;
             this.labPoint.Font = new System.Drawing.Font("Norwester", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labPoint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labPoint.Location = new System.Drawing.Point(213, 57);
+            this.labPoint.Location = new System.Drawing.Point(225, 57);
             this.labPoint.Name = "labPoint";
             this.labPoint.Size = new System.Drawing.Size(50, 58);
             this.labPoint.TabIndex = 5;
@@ -129,7 +129,7 @@ namespace FlappyBird
             this.picBird.BackColor = System.Drawing.Color.Transparent;
             this.picBird.Image = global::FlappyBird.Properties.Resources.whaleDropingBlue;
             this.picBird.Location = new System.Drawing.Point(52, 306);
-            this.picBird.Margin = new System.Windows.Forms.Padding(2);
+            this.picBird.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picBird.Name = "picBird";
             this.picBird.Size = new System.Drawing.Size(80, 48);
             this.picBird.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -140,7 +140,7 @@ namespace FlappyBird
             // 
             this.picDesktop.Image = global::FlappyBird.Properties.Resources.sky1;
             this.picDesktop.Location = new System.Drawing.Point(0, 0);
-            this.picDesktop.Margin = new System.Windows.Forms.Padding(2);
+            this.picDesktop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picDesktop.Name = "picDesktop";
             this.picDesktop.Size = new System.Drawing.Size(501, 769);
             this.picDesktop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -153,7 +153,7 @@ namespace FlappyBird
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picGround.Image = global::FlappyBird.Properties.Resources.ground;
             this.picGround.Location = new System.Drawing.Point(-100, 652);
-            this.picGround.Margin = new System.Windows.Forms.Padding(2);
+            this.picGround.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picGround.Name = "picGround";
             this.picGround.Size = new System.Drawing.Size(501, 117);
             this.picGround.TabIndex = 1;
@@ -165,15 +165,27 @@ namespace FlappyBird
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picNextGround.Image = global::FlappyBird.Properties.Resources.ground;
             this.picNextGround.Location = new System.Drawing.Point(25, 430);
-            this.picNextGround.Margin = new System.Windows.Forms.Padding(2);
+            this.picNextGround.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picNextGround.Name = "picNextGround";
             this.picNextGround.Size = new System.Drawing.Size(501, 117);
             this.picNextGround.TabIndex = 4;
             this.picNextGround.TabStop = false;
             // 
+            // gameOverInfoGeneral
+            // 
+            this.gameOverInfoGeneral.HighScore = "0";
+            this.gameOverInfoGeneral.Location = new System.Drawing.Point(68, 173);
+            this.gameOverInfoGeneral.Margin = new System.Windows.Forms.Padding(4);
+            this.gameOverInfoGeneral.Name = "gameOverInfoGeneral";
+            this.gameOverInfoGeneral.Score = "0";
+            this.gameOverInfoGeneral.Size = new System.Drawing.Size(359, 374);
+            this.gameOverInfoGeneral.TabIndex = 6;
+            this.gameOverInfoGeneral.Visible = false;
+            // 
             // gameSettingGeneral
             // 
-            this.gameSettingGeneral.Location = new System.Drawing.Point(36, 101);
+            this.gameSettingGeneral.Location = new System.Drawing.Point(44, 82);
+            this.gameSettingGeneral.Margin = new System.Windows.Forms.Padding(4);
             this.gameSettingGeneral.MusicVolumn = 50;
             this.gameSettingGeneral.Name = "gameSettingGeneral";
             this.gameSettingGeneral.SFXVolumn = 15;
@@ -182,37 +194,28 @@ namespace FlappyBird
             this.gameSettingGeneral.TabIndex = 10;
             this.gameSettingGeneral.Visible = false;
             // 
-            // gameOverInfoGeneral
-            // 
-            this.gameOverInfoGeneral.HighScore = "0";
-            this.gameOverInfoGeneral.Location = new System.Drawing.Point(68, 173);
-            this.gameOverInfoGeneral.Name = "gameOverInfoGeneral";
-            this.gameOverInfoGeneral.Score = "0";
-            this.gameOverInfoGeneral.Size = new System.Drawing.Size(359, 374);
-            this.gameOverInfoGeneral.TabIndex = 6;
-            this.gameOverInfoGeneral.Visible = false;
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 769);
+            this.Controls.Add(this.gameOverInfoGeneral);
             this.Controls.Add(this.picSettingIcon);
             this.Controls.Add(this.gameSettingGeneral);
             this.Controls.Add(this.labTips);
             this.Controls.Add(this.mediaPlayerHopSFX);
             this.Controls.Add(this.mediaPlayerMusic);
-            this.Controls.Add(this.gameOverInfoGeneral);
             this.Controls.Add(this.labPoint);
             this.Controls.Add(this.labDebug);
             this.Controls.Add(this.picBird);
             this.Controls.Add(this.picDesktop);
             this.Controls.Add(this.picGround);
             this.Controls.Add(this.picNextGround);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "mainForm";
-            this.Text = "flappy bird";
+            this.Text = "Floating Whale";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayerMusic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayerHopSFX)).EndInit();

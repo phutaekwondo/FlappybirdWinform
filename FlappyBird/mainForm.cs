@@ -35,7 +35,7 @@ namespace FlappyBird
         Image DroppingImage;
         int BirdFallingSpeed = 0;
         int Gravity = 2;
-        int Max_BirdFallingSpeed= 15;
+        int Max_BirdFallingSpeed= 20;
         int JumpSpeed = -20;
 
         //--pillars
@@ -233,6 +233,7 @@ namespace FlappyBird
         }
         void init()
         {
+            labDebug.Visible = false;
             // made a picture box for bird
             HoppingImage = global::FlappyBird.Properties.Resources.whaleHopingBlue;
             DroppingImage = global::FlappyBird.Properties.Resources.whaleDropingBlue;
@@ -278,21 +279,13 @@ namespace FlappyBird
 
             ////play the music
             mediaPlayerMusic.URL = "backgroundMusic.wav";
-            mediaPlayerMusic.PlayStateChange += MusicPlayer_PlayStateChange;
+            mediaPlayerMusic.settings.setMode("loop", true);
             mediaPlayerMusic.Ctlcontrols.play();
 
             ////load SFX
             mediaPlayerHopSFX.URL = "hopSFX.mp3";
             mediaPlayerHopSFX.settings.volume = 10;
             
-        }
-        private void MusicPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-            if (e.newState == 8)// MediaEnded
-            {
-                // call function to play the video again     
-                mediaPlayerMusic.Ctlcontrols.play();
-            }
         }
 
         void GameOverInfo_ExitClick( object sender, EventArgs e)
